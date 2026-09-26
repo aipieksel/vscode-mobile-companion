@@ -1,0 +1,16 @@
+{
+  "name": "vscode-mobile-companion",
+  "private": true,
+  "workspaces": [
+    "project/extension/vscode-mobile-companion",
+    "project/services/relay-backend"
+  ],
+  "scripts": {
+    "build": "npm run build:extension && npm run build:backend",
+    "build:extension": "npm --workspace project/extension/vscode-mobile-companion run compile",
+    "build:backend": "npm --workspace project/services/relay-backend run build",
+    "dev:backend": "npm --workspace project/services/relay-backend run dev",
+    "serve:browser": "python3 -m http.server 4173 -d project/browser"
+  },
+  "author": "aipieksel"
+}

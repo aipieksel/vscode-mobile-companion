@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"chatgpt.openOnStartup": true,
+		"chat.instructionsFilesLocations": {
+			".github/instructions/copilot.instructions.md": true,
+			".github/instructions/task.instructions.md": true
+		},
+		"chat.includeReferencedInstructions": true,
+		"chat.requestQueuing.defaultAction": "queue",
+		"chat.restoreLastPanelSession": true,
+		"chat.tools.terminal.autoReplyToPrompts": true,
+		"github.copilot.chat.codeGeneration.useInstructionFiles": true,
+		"chat.editor.lineHeight": 50,
+		"todo-tree.tree.scanMode": "current file",
+		"todo-tree.tree.showBadges": false,
+		"todo-tree.tree.disableCompactFolders": false,
+		"todo-tree.tree.showCountsInTree": true
+	}
+}

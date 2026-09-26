@@ -1,0 +1,84 @@
+{
+  "name": "vscode-mobile-companion",
+  "displayName": "VS Code Mobile Companion",
+  "description": "Pairs a downloadable mobile app with a running VS Code desktop session.",
+  "version": "0.1.1",
+  "publisher": "aipieksel",
+  "files": [
+    "out/**",
+    "package.json",
+    "README.md",
+    "LICENSE.txt"
+  ],
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codrCompanion.startPairing",
+        "title": "Codr Companion: Start Pairing"
+      },
+      {
+        "command": "codrCompanion.connectBackend",
+        "title": "Codr Companion: Connect Relay"
+      },
+      {
+        "command": "codrCompanion.showStatus",
+        "title": "Codr Companion: Show Status"
+      },
+      {
+        "command": "codrCompanion.sendPrompt",
+        "title": "Codr Companion: Send Prompt"
+      },
+      {
+        "command": "codrCompanion.newChat",
+        "title": "Codr Companion: Start New Chat"
+      }
+    ],
+    "configuration": {
+      "title": "Codr Companion",
+      "properties": {
+        "codrCompanion.localApiPort": {
+          "type": "number",
+          "default": 8767,
+          "description": "Local loopback port for the desktop companion API."
+        },
+        "codrCompanion.relayBaseUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8787",
+          "description": "Base URL for the pairing and relay backend."
+        },
+        "codrCompanion.provider": {
+          "type": "string",
+          "default": "copilot",
+          "enum": [
+            "copilot"
+          ],
+          "description": "Default chat provider for phone-originated prompts."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.30",
+    "@types/vscode": "^1.93.0",
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.8.3"
+  }
+}

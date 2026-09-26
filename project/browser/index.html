@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html id="app-html" lang="en">
+<head id="app-head">
+    <meta id="app-meta-charset" charset="UTF-8">
+    <meta id="app-meta-viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta id="app-meta-theme" name="theme-color" content="#000000">
+    <title id="app-title">Codr VS - Chat</title>
+    <link id="app-manifest-link" rel="manifest" href="/manifest.webmanifest">
+    <link id="app-stylesheet-link" rel="stylesheet" href="/styles.css">
+</head>
+<body id="app-body">
+    <div id="boot-spinner" class="boot-spinner">
+        <div id="boot-spinner-card" class="boot-spinner-card">
+            <img id="boot-spinner-logo-image" class="boot-spinner-logo-image" src="/logo-small.svg" alt="Codr VS logo">
+            <h1 id="boot-spinner-title" class="boot-spinner-title">Codr VS</h1>
+            <p id="boot-spinner-status" class="boot-spinner-status">Loading the mobile client...</p>
+            <p id="boot-spinner-version" class="boot-spinner-version">v1.10.18</p>
+        </div>
+    </div>
+
+    <div id="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" id="sidebarHeader">
+                <div class="brand" id="brandRow">
+                    <div class="brand-logo" id="brandLogo">CV</div>
+                    <div class="brand-info" id="brandInfo">
+                        <h1 id="brandTitle">Codr VS</h1>
+                        <div class="version" id="sidebar-version-badge">Local config v1.10.18</div>
+                    </div>
+                </div>
+                <div class="health-status" id="sidebarHealthStatus">
+                    <div class="health-indicator" id="sidebar-health-dot"></div>
+                    <span class="health-text" id="sidebar-health-text">Live health <strong id="sidebar-health-value">Connecting</strong></span>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="activeSessionsSection">
+                <div class="section-header" id="activeSessionsSectionHeader"><span class="section-title" id="activeSessionsSectionTitle">Active Sessions</span></div>
+                <div class="stats-grid" id="activeSessionsGrid">
+                    <div class="stat-card" id="activeSessionsCardClients"><div class="stat-label" id="activeSessionsLabelClients">SSE Clients</div><div class="stat-value" id="active-sessions-value">0</div></div>
+                    <div class="stat-card" id="activeSessionsCardUptime"><div class="stat-label" id="activeSessionsLabelUptime">Server Uptime</div><div class="stat-value small" id="server-uptime-value">—</div></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="macProcessesSection">
+                <div class="section-header" id="macProcessesSectionHeader"><span class="section-title" id="macProcessesSectionTitle">Mac Processes</span></div>
+                <div class="stats-grid" id="macProcessesGrid">
+                    <div class="stat-card" id="macProcessesWindowsCard"><div class="stat-label" id="macProcessesWindowsLabel">VS Code Windows</div><div class="stat-value" id="sidebar-stat-windows-value">0</div></div>
+                    <div class="stat-card" id="macProcessesCliCard"><div class="stat-label" id="macProcessesCliLabel">CLI Agents</div><div class="stat-value" id="sidebar-stat-tools-value">0</div></div>
+                    <div class="stat-card" id="macProcessesActiveCard"><div class="stat-label" id="macProcessesActiveLabel">Active Jobs</div><div class="stat-value" id="sidebar-stat-active-value">0</div></div>
+                    <div class="stat-card" id="macProcessesPendingCard"><div class="stat-label" id="macProcessesPendingLabel">Pending</div><div class="stat-value small" id="sidebar-stat-pending-value">0</div></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="networkSection">
+                <div class="section-header" id="networkSectionHeader"><span class="section-title" id="networkSectionTitle">Network I/O</span></div>
+                <div class="network-stats" id="networkStatsList">
+                    <div class="network-item" id="networkItemBytesIn"><span class="network-label" id="networkLabelBytesIn">Bytes In</span><span class="network-value" id="network-bytes-in">0 B</span></div>
+                    <div class="network-item" id="networkItemBytesOut"><span class="network-label" id="networkLabelBytesOut">Bytes Out</span><span class="network-value" id="network-bytes-out">0 B</span></div>
+                    <div class="network-item" id="networkItemRequests"><span class="network-label" id="networkLabelRequests">Requests</span><span class="network-value" id="network-requests">0</span></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="securitySection">
+                <div class="section-header" id="securitySectionHeader"><span class="section-title" id="securitySectionTitle">Security & Auth</span></div>
+                <div class="auth-card" id="authCard">
+                    <div class="auth-row" id="authRowMode"><span class="auth-label" id="authLabelMode">Auth Mode</span><span class="auth-value" id="auth-mode-value"><span class="status-dot active" id="authModeDot"></span>Token</span></div>
+                    <div class="auth-row" id="authRowReaper"><span class="auth-label" id="authLabelReaper">Idle Reaper</span><span class="auth-value" id="idle-reaper-value"><span class="status-dot active" id="idleReaperDot"></span>Active</span></div>
+                    <div class="auth-row" id="authRowSession"><span class="auth-label" id="authLabelSession">Session</span><span class="auth-value" id="session-state-value"><span class="status-dot idle" id="sessionStateDot"></span>Idle</span></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="providersSection">
+                <div class="section-header" id="providersSectionHeader"><span class="section-title" id="providersSectionTitle">CLI Providers</span></div>
+                <div class="provider-list" id="providerList">
+                    <button class="provider-item" id="provider-copilot-btn" type="button"><span class="provider-name" id="providerCopilotName">Copilot</span><span class="provider-status available" id="provider-copilot-status">Available</span></button>
+                    <button class="provider-item" id="provider-codex-btn" type="button"><span class="provider-name" id="providerCodexName">Codex</span><span class="provider-status" id="provider-codex-status">Available</span></button>
+                    <button class="provider-item" id="provider-opencode-btn" type="button"><span class="provider-name" id="providerOpenCodeName">Opencode</span><span class="provider-status" id="provider-opencode-status">Unavailable</span></button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="settingsSection">
+                <div class="section-header" id="settingsSectionHeader"><span class="section-title" id="settingsSectionTitle">Settings</span></div>
+                <div class="toggle-container" id="toggleContainerPush">
+                    <div class="toggle-label" id="toggleLabelPush"><strong id="toggleLabelPushTitle">Push Notifications</strong><span id="toggleLabelPushText">Alert for long-running actions</span></div>
+                    <button class="toggle-switch" id="pushNotificationsToggle" type="button" aria-label="Toggle push notifications"></button>
+                </div>
+                <div class="toggle-container" id="toggleContainerWindowNavigation">
+                    <div class="toggle-label" id="toggleLabelWindowNavigation"><strong id="toggleLabelWindowNavigationTitle">Window Navigation</strong><span id="toggleLabelWindowNavigationText">Cycle between open windows</span></div>
+                    <button class="toggle-switch active" id="windowNavigationToggle" type="button" aria-label="Toggle window navigation"></button>
+                </div>
+                <div class="toggle-container" id="toggleContainerLogging">
+                    <div class="toggle-label" id="toggleLabelLogging"><strong id="toggleLabelLoggingTitle">Debug Logging</strong><span id="toggleLabelLoggingText">Enable browser-side runtime logs</span></div>
+                    <button class="toggle-switch" id="debugLoggingToggle" type="button" aria-label="Toggle debug logging"></button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="pathSectionWrapper">
+                <div class="section-header" id="pathSectionHeader"><span class="section-title" id="pathSectionTitle">Workspace Path</span></div>
+                <div class="path-section" id="pathSection">
+                    <div class="path-label" id="pathLabel">Settings & Config Path</div>
+                    <div class="path-value" id="workdir-current">No workspace selected</div>
+                    <label class="utility-hidden-label" id="workdirInputLabel" for="workdir-input">Workspace path</label>
+                    <input id="workdir-input" class="utility-hidden-input" type="text" autocomplete="off">
+                    <div class="path-actions" id="pathActions">
+                        <button class="btn btn-secondary" id="workdir-browse-btn" type="button">Browse</button>
+                        <button class="btn btn-primary" id="workdir-save-btn" type="button">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="actionsSection">
+                <div class="section-header" id="actionsSectionHeader"><span class="section-title" id="actionsSectionTitle">Actions</span></div>
+                <div class="actions-grid" id="actionsGrid">
+                    <button class="action-btn" id="exportBtn" type="button"><svg id="exportActionIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="exportActionIconPath" d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline id="exportActionIconArrow" points="7 10 12 15 17 10"/><line id="exportActionIconLine" x1="12" y1="15" x2="12" y2="3"/></svg><span id="exportActionLabel">Export</span></button>
+                    <button class="action-btn" id="hard-refresh-btn" type="button"><svg id="resetActionIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="resetActionIconPathTop" d="M3 12a9 9 0 109-9"/><polyline id="resetActionIconArrow" points="3 3 3 9 9 9"/></svg><span id="resetActionLabel">Reset</span></button>
+                    <button class="action-btn" id="download-logs-btn" type="button"><svg id="downloadLogsActionIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="downloadLogsActionIconPath" d="M9 17H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v2"/><path id="downloadLogsActionIconPathBottom" d="M13 7h4l3 3v9a2 2 0 01-2 2h-5a2 2 0 01-2-2V9a2 2 0 012-2z"/><line id="downloadLogsActionIconLineTop" x1="15" y1="13" x2="17" y2="13"/><line id="downloadLogsActionIconLineMiddle" x1="15" y1="17" x2="17" y2="17"/></svg><span id="downloadLogsActionLabel">Download Logs</span></button>
+                    <button class="action-btn danger" id="logout-btn" type="button"><svg id="logoutActionIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="logoutActionIconPath" d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline id="logoutActionIconArrow" points="16 17 21 12 16 7"/><line id="logoutActionIconLine" x1="21" y1="12" x2="9" y2="12"/></svg><span id="logoutActionLabel">Sign Out</span></button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" id="recentRequestsSection">
+                <div class="section-header" id="recentRequestsSectionHeader"><span class="section-title" id="recentRequestsSectionTitle">Recent Requests</span></div>
+                <div class="recent-requests" id="recent-requests-list">No recent requests</div>
+            </div>
+        </aside>
+        <button class="app-shell-backdrop" id="app-shell-backdrop" type="button" aria-label="Close sidebar"></button>
+
+        <main class="main-content" id="app-main">
+            <header class="chat-header" id="chatHeader">
+                <div class="chat-header-left" id="chatHeaderLeft">
+                    <div class="workspace-selector" id="workspaceSelector">
+                        <label class="utility-hidden-label" id="workspaceSelectLabel" for="workspace-select">Workspace</label>
+                        <div class="workspace-icon" id="workspaceSelectorIcon"><svg id="workspaceSelectorIconSvg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="workspaceSelectorIconPath" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg></div>
+                        <span class="workspace-name" id="currentWorkspace">vscode-mobile</span>
+                        <span class="workspace-arrow" id="workspaceArrow">▼</span>
+                        <select id="workspace-select" class="workspace-native-select" aria-label="Workspace"></select>
+                    </div>
+                    <div class="header-toggle-group" id="modeToggleGroup">
+                        <button class="header-toggle-btn header-toggle-text-btn" id="mode-vscode-btn" type="button">
+                            <span class="header-toggle-label-full" id="mode-toggle-label-full">VSCode</span>
+                            <span class="header-toggle-label-short" id="mode-toggle-label-short">VS</span>
+                        </button>
+                    </div>
+                    <div class="header-toggle-group" id="providerToggleGroup">
+                        <button class="header-toggle-btn header-toggle-text-btn" id="top-provider-copilot-btn" type="button">
+                            <span class="header-toggle-label-full" id="provider-toggle-label-full">Copilot</span>
+                            <span class="header-toggle-label-short" id="provider-toggle-label-short">CP</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="chat-header-right" id="chatHeaderRight">
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle sidebar">
+                        <svg class="menu-icon" id="menuToggleMenuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line id="menuToggleMenuIconLineTop" x1="3" y1="6" x2="21" y2="6"/>
+                            <line id="menuToggleMenuIconLineMiddle" x1="3" y1="12" x2="21" y2="12"/>
+                            <line id="menuToggleMenuIconLineBottom" x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                        <svg class="close-icon" id="menuToggleCloseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line id="menuToggleCloseIconLineTop" x1="18" y1="6" x2="6" y2="18"/>
+                            <line id="menuToggleCloseIconLineBottom" x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="chat-area" id="chat-scroll-region">
+                <div class="chat-messages" id="chatMessages"></div>
+            </div>
+
+            <div class="composer-container" id="composerContainer">
+                <div class="session-bar" id="runtime-status-bar">
+                    <div class="session-info" id="runtime-status-copy">
+                        <span class="session-id" id="runtime-status-heading">Session ready</span>
+                        <span class="utility-hidden-label" id="runtime-status-label">Connected</span>
+                        <div class="session-status" id="runtime-status-detail-row">
+                            <div class="session-status-dot" id="runtime-status-dot"></div>
+                            <span id="runtime-status-detail">Connected</span>
+                        </div>
+                    </div>
+                    <div class="session-actions" id="runtime-status-actions">
+                        <button class="session-btn" id="runtime-status-state-btn" type="button">Idle</button>
+                        <span class="session-timer hidden" id="runtime-status-timer">0s</span>
+                        <button class="session-btn danger" id="runtime-status-stop-btn" type="button" disabled>Stop</button>
+                        <button class="session-btn" id="window-prev-btn" type="button" title="Previous window"><svg id="windowPrevIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline id="windowPrevIconPath" points="15 18 9 12 15 6"/></svg></button>
+                        <button class="session-btn" id="window-next-btn" type="button" title="Next window"><svg id="windowNextIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline id="windowNextIconPath" points="9 18 15 12 9 6"/></svg></button>
+                    </div>
+                </div>
+                <div class="composer-group" id="composerGroup">
+                    <label class="utility-hidden-label" id="promptInputLabel" for="promptInput">Prompt</label>
+                    <textarea id="promptInput" rows="1" class="prompt-input" placeholder="Ask Copilot anything..."></textarea>
+                    <div class="input-actions-right" id="inputActionsRight">
+                        <button class="clear-input-btn hidden" id="clearInputBtn" title="Clear" type="button"><svg id="clearInputBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="clearInputBtnIconPath" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                    </div>
+                </div>
+                <div class="bottom-toolbar" id="bottomToolbar">
+                    <div class="toolbar-left" id="toolbarLeft" style="display: flex; justify-content: flex-start;">
+                        <div class="composer-menu-wrap" id="composerMenuWrap">
+                            <button class="toolbar-icon-btn" id="actionBtn" title="Open insert menu" type="button"><svg id="actionBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line id="actionBtnIconLineVertical" x1="12" y1="5" x2="12" y2="19"/><line id="actionBtnIconLineHorizontal" x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                            <div class="composer-action-menu hidden" id="composerActionMenu">
+                                <button class="composer-action-menu-btn" id="composer-menu-media-btn" type="button"><span id="composerMenuMediaLabel">Media</span></button>
+                                <button class="composer-action-menu-btn" id="composer-menu-file-btn" type="button"><span id="composerMenuFileLabel">File</span></button>
+                                <button class="composer-action-menu-btn" id="composer-menu-attachment-btn" type="button"><span id="composerMenuAttachmentLabel">Attachment</span></button>
+                            </div>
+                            <input id="composer-media-input" class="utility-hidden-input" type="file" accept="image/*,video/*,audio/*" multiple>
+                            <input id="composer-file-input" class="utility-hidden-input" type="file" accept=".txt,.md,.markdown,.json,.js,.ts,.tsx,.jsx,.css,.html,.swift,.py,.go,.java,.rs,.sh,.yml,.yaml,.xml,.csv,.log,.ini,.toml" multiple>
+                            <input id="composer-attachment-input" class="utility-hidden-input" type="file" multiple>
+                        </div>
+                        <button class="toolbar-icon-btn" id="recordBtn" type="button" title="Record voice"><svg id="recordBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="recordBtnIconPathMic" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path id="recordBtnIconPathWave" d="M19 10v2a7 7 0 01-14 0v-2"/><line id="recordBtnIconLineVertical" x1="12" y1="19" x2="12" y2="23"/><line id="recordBtnIconLineHorizontal" x1="8" y1="23" x2="16" y2="23"/></svg></button>
+                        <div class="voice-spinner hidden" id="voiceTranscribeSpinner"><svg id="voiceSpinnerIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle id="voiceSpinnerCircle" cx="12" cy="12" r="9" stroke-width="3" stroke-opacity="0.3"/><path id="voiceSpinnerPath" d="M21 12a9 9 0 00-9-9" stroke-width="3"/></svg><span id="voiceSpinnerLabel">Transcribing...</span></div>
+                    </div>
+                    <div class="toolbar-center" id="toolbarCenter">
+                        <button class="toolbar-icon-btn" id="promptPrevBtn" title="Previous Prompt" type="button"><svg id="promptPrevBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="promptPrevBtnIconPath" d="M5 15l7-7 7 7"/></svg></button>
+                        <button class="toolbar-icon-btn clear-prompt-btn" id="clearPromptBtn" title="Clear Input" type="button"><svg id="clearPromptBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line id="clearPromptBtnIconLineTop" x1="18" y1="6" x2="6" y2="18"/><line id="clearPromptBtnIconLineBottom" x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                        <button class="toolbar-icon-btn" id="promptNextBtn" title="Next Prompt" type="button"><svg id="promptNextBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="promptNextBtnIconPath" d="M19 9l-7 7-7-7"/></svg></button>
+                        <button class="toolbar-icon-btn" id="refresh-windows-btn" type="button" title="Refresh windows"><svg id="headerWindowsRefreshIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path id="headerWindowsRefreshPathTop" d="M23 4v6h-6M1 20v-6h6"/><path id="headerWindowsRefreshPathBottom" d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></button>
+                    </div>
+                    <div class="toolbar-far-right" id="toolbarFarRight">
+                        <button class="send-btn" id="sendBtn" type="button" disabled><svg id="sendBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line id="sendBtnIconLine" x1="22" y1="2" x2="11" y2="13"/><polygon id="sendBtnIconPolygon" points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+                    </div>
+                </div>
+                <div class="composer-overlay hidden" id="composerOverlay"><svg id="composerOverlayIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle id="composerOverlayCircle" cx="12" cy="12" r="9" stroke-width="3" stroke-opacity="0.3"/><path id="composerOverlayPath" d="M21 12a9 9 0 00-9-9" stroke-width="3"/></svg><span id="composerOverlayLabel">Transcribing voice...</span></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay hidden" id="exportModal"><div class="modal active-shell-modal" id="exportModalCard"><div class="modal-header" id="exportModalHeader"><h3 class="modal-title" id="exportModalTitle">Export Chats</h3><button class="modal-close" id="closeExportModal" type="button"><svg id="closeExportModalIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line id="closeExportModalIconLineTop" x1="18" y1="6" x2="6" y2="18"/><line id="closeExportModalIconLineBottom" x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body" id="exportModalBody"><div class="form-group" id="exportFormatGroup"><div class="form-label" id="exportFormatLabel">Format</div><div class="radio-group" id="exportFormatRadioGroup"><div class="radio-option" id="exportFormatOptionSingle"><input type="radio" name="format" id="formatSingle" checked><label for="formatSingle" id="formatSingleLabel">Single file (all chats)</label></div><div class="radio-option" id="exportFormatOptionZip"><input type="radio" name="format" id="formatZip"><label for="formatZip" id="formatZipLabel">ZIP (one file per chat)</label></div></div></div><div class="form-group" id="exportContentGroup"><div class="form-label" id="exportContentLabel">Content</div><div class="radio-group" id="exportContentRadioGroup"><div class="radio-option" id="exportContentOptionBoth"><input type="radio" name="content" id="contentBoth" checked><label for="contentBoth" id="contentBothLabel">Both (full conversation)</label></div><div class="radio-option" id="exportContentOptionUser"><input type="radio" name="content" id="contentUser"><label for="contentUser" id="contentUserLabel">My messages only</label></div><div class="radio-option" id="exportContentOptionAssistant"><input type="radio" name="content" id="contentAssistant"><label for="contentAssistant" id="contentAssistantLabel">Assistant replies only</label></div></div></div></div><div class="modal-footer" id="exportModalFooter"><button class="btn btn-secondary" id="cancelExport" type="button">Cancel</button><button class="btn btn-primary" id="downloadExport" type="button">Download Export</button></div></div></div>
+
+    <div class="modal-overlay hidden" id="workspaceModal"><div class="modal active-shell-modal" id="workspaceModalCard"><div class="modal-header" id="workspaceModalHeader"><h3 class="modal-title" id="workspaceModalTitle">Manage Workspaces</h3><button class="modal-close" id="closeWorkspaceModal" type="button"><svg id="closeWorkspaceModalIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line id="closeWorkspaceModalIconLineTop" x1="18" y1="6" x2="6" y2="18"/><line id="closeWorkspaceModalIconLineBottom" x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body" id="workspaceModalBody"><div class="workspace-list" id="workspaceList"></div></div><div class="modal-footer" id="workspaceModalFooter"><button class="btn btn-secondary" id="cancelWorkspace" type="button">Cancel</button><button class="btn btn-primary" id="saveWorkspace" type="button">Use This Directory</button></div></div></div>
+
+    <div id="directory-browser-sheet" class="modal-sheet is-hidden" role="dialog" aria-modal="true" aria-labelledby="directory-browser-title">
+        <div id="directory-browser-card" class="modal-card">
+            <div id="directory-browser-header" class="modal-header">
+                <h2 id="directory-browser-title" class="modal-title">Browse directories</h2>
+                <button id="directory-browser-close-btn" class="modal-close" type="button"><svg id="directory-browser-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line id="directory-browser-close-icon-line-top" x1="18" y1="6" x2="6" y2="18"/><line id="directory-browser-close-icon-line-bottom" x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+            <div id="directory-browser-body" class="modal-body">
+                <p id="directory-browser-path-label" class="form-label">Current path</p>
+                <div id="directory-browser-path" class="path-value">/</div>
+                <div id="directory-browser-list" class="directory-browser-list"></div>
+            </div>
+            <div id="directory-browser-footer" class="modal-footer">
+                <button id="directory-browser-cancel-btn" class="btn btn-secondary" type="button">Cancel</button>
+                <button id="directory-browser-select-btn" class="btn btn-primary" type="button">Use this path</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast is-hidden" aria-live="assertive"><span id="toast-message">Message</span></div>
+    <script id="app-script" src="/app.js" defer></script>
+</body>
+</html>
