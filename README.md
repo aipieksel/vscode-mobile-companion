@@ -2,7 +2,15 @@
 
 Maintained by [aipieksel](https://github.com/aipieksel).
 
-A prototype for pairing a browser client with a running VS Code session. The desktop extension exposes pairing and chat commands; the relay carries session updates between clients. The browser interface connects directly to the extension’s local HTTP API. There is no iOS or Android app in this package.
+VS Code Mobile Companion explores how a browser could follow and interact with a VS Code session away from the desktop editor. The package includes a VS Code extension for pairing and chat commands, a Node/WebSocket relay for session updates, and a separate browser interface.
+
+This is a development prototype. The current browser interface calls the extension's local HTTP API, so opening it on a phone does not yet connect that phone through the relay. Pairing and provider behavior also depend on the desktop VS Code session. The component guides below show what can be run locally and where the cross-device boundary remains.
+
+## How the pieces fit
+
+1. The desktop extension exposes commands and the local companion API.
+2. The relay holds pairing and session state in memory for development.
+3. The browser client presents the companion UI and currently searches loopback for the extension API.
 
 ## Components
 
@@ -12,7 +20,7 @@ A prototype for pairing a browser client with a running VS Code session. The des
 | `project/services/relay-backend` | Node/WebSocket relay with in-memory sessions |
 | `project/browser` | Browser companion interface |
 
-There is no `project-legacy/` bundle in this package. The root npm build covers the extension and relay only.
+The root npm build covers the extension and relay. The browser client is served separately.
 
 ## Build and try locally
 
